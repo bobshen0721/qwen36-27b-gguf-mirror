@@ -1,0 +1,7 @@
+*.gguf
+*.gguf.*
+release-assets/
+downloads/
+staging/
+parts/
+
