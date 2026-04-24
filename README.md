@@ -1,16 +1,24 @@
-# Qwen3.6-27B-UD-IQ2_XXS GitHub Mirror
+# Qwen3.6 27B GGUF GitHub Mirror
 
-這個 repo 用來鏡像 `Qwen3.6-27B-UD-IQ2_XXS.gguf`，做法是：
+這個 repo 用來鏡像多個 Qwen3.6 27B GGUF 檔案，做法是：
 
 - `Code -> Download ZIP`：提供說明、切檔腳本、驗證腳本與 `merge-model.bat`
 - `Releases`：提供實際的 `.gguf.001`, `.gguf.002`, `.gguf.003` 分片與 `checksums.sha256`
 
 模型本體不會直接 commit 進 git，也不使用 Git LFS。
 
+## Models
+
+| Model file | Release tag | Merge BAT |
+| --- | --- | --- |
+| `Qwen3.6-27B-UD-IQ2_XXS.gguf` | `v1-qwen3.6-27b-ud-iq2-xxs` | `merge-model.bat` |
+| `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf` | `v1-qwen3.6-27b-uncensored-hauhaucs-aggressive-iq3-m` | `merge-aggressive-iq3m.bat` |
+
 ## 檔案清單
 
 - `split-model.ps1`：把原始 `.gguf` 直接切成多個 `1900 MiB` 分片
-- `merge-model.bat`：在 Windows 合併下載好的分片
+- `merge-model.bat`：在 Windows 合併下載好的分片；可接受模型檔名參數
+- `merge-aggressive-iq3m.bat`：合併 `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf`
 - `verify-model.ps1`：比對單一檔案的 SHA256 是否符合 `checksums.sha256`
 - `checksums.sha256`：原始模型與每個分片的 SHA256 manifest
 - `UPSTREAM.md`：上游來源與授權說明
@@ -28,6 +36,18 @@
 
 ```bat
 merge-model.bat
+```
+
+如果要合併 aggressive IQ3_M 版本，可執行：
+
+```bat
+merge-aggressive-iq3m.bat
+```
+
+或直接傳入模型檔名：
+
+```bat
+merge-model.bat Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf
 ```
 
 `merge-model.bat` 會：
@@ -56,11 +76,27 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\verify-model.ps1 -File .\Q
 hf download unsloth/Qwen3.6-27B-GGUF Qwen3.6-27B-UD-IQ2_XXS.gguf --local-dir .\staging
 ```
 
+Aggressive IQ3_M:
+
+```powershell
+hf download HauhauCS/Qwen3.6-27B-Uncensored-HauhauCS-Aggressive Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf --local-dir .\staging
+```
+
 ### 2. 切檔並產生 SHA256 manifest
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\split-model.ps1 `
   -InputFile .\staging\Qwen3.6-27B-UD-IQ2_XXS.gguf `
+  -OutputDir .\release-assets `
+  -PartSizeMiB 1900 `
+  -UpdateManifest
+```
+
+Aggressive IQ3_M:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\split-model.ps1 `
+  -InputFile .\staging\Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf `
   -OutputDir .\release-assets `
   -PartSizeMiB 1900 `
   -UpdateManifest

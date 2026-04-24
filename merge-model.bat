@@ -1,7 +1,8 @@
 @echo off
 setlocal EnableExtensions
 
-set "BASE=Qwen3.6-27B-UD-IQ2_XXS.gguf"
+set "BASE=%~1"
+if "%BASE%"=="" set "BASE=Qwen3.6-27B-UD-IQ2_XXS.gguf"
 set "SCRIPT_DIR=%~dp0"
 if "%SCRIPT_DIR:~-1%"=="\" set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
 
@@ -61,4 +62,3 @@ if exist "%MANIFEST%" (
 echo.
 echo Done. Run verify-model.ps1 for an exact manifest check if needed.
 exit /b 0
-

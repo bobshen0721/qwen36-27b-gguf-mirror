@@ -1,4 +1,4 @@
-# SHA256 manifest for Qwen3.6-27B-UD-IQ2_XXS mirror assets
+# SHA256 manifest for GGUF mirror assets
 # Generated 2026-04-24 11:00:02 +08:00
 968bfc712832031afebec339da3ae61c6822ab9a118e1d72b6be2a7781a96e30 *Qwen3.6-27B-UD-IQ2_XXS.gguf
 78e5a118a936efe32e089b47b87b6bc18c9684377902b0b3fc0d16531fab1679 *Qwen3.6-27B-UD-IQ2_XXS.gguf.001
@@ -6,3 +6,11 @@
 c9976a76ab31f085ec2321df19da2531c77614a2e904219446d6d6d0e3a8858b *Qwen3.6-27B-UD-IQ2_XXS.gguf.003
 cf09f3334a669c312cb1ffcc35bc7a5e711d2348da2370f83fcc34ac57b96b69 *Qwen3.6-27B-UD-IQ2_XXS.gguf.004
 092752337fc97f7d908b1a2cb2fc0d65c17805ea9c85395b7006dd84613cedd9 *Qwen3.6-27B-UD-IQ2_XXS.gguf.005
+91164182148008f25b5451c3590e737cdc8d9ca887fb90e42824be9875f5fb67 *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf
+c593d83e662dd726aabf6ce6cecbaa134a161b2393b819fea969bc20af5347fd *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.001
+cb13b0f33966f4a992403b999d7df420d2566b5cfa8612c9cc0d4000681ef74c *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.002
+592db16637c20c75e3aec21ea933dd2ccb29a6bd0442f43498d5b73dd0b1915e *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.003
+bcb7bec98bdec8dd589e0059ba50e883482b0a0acf5133d27d4a3ee6c1d8cf0b *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.004
+ce1ef6d15339e1ccc50bcecf4a6092bf8033823ea2197a1bbf53eb17fadc8eb6 *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.005
+f6ed2ef52b9be364b7de611bc65bb77063fc9a5826ef3ee916f20f8842205574 *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.006
+4ec0407483ad782fe46ff01fe24f73d300aa9d59d93cdc9b5f10f1762be00e68 *Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf.007

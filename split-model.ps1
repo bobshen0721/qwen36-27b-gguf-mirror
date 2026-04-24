@@ -136,7 +136,7 @@ finally {
 
 if ($ManifestPath) {
     $manifestLines = New-Object System.Collections.Generic.List[string]
-    $manifestLines.Add('# SHA256 manifest for Qwen3.6-27B-UD-IQ2_XXS mirror assets')
+    $manifestLines.Add('# SHA256 manifest for GGUF mirror assets')
     $manifestLines.Add(('# Generated {0}' -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss K')))
     $manifestLines.Add(('{0} *{1}' -f $sourceHex, $baseName))
 
@@ -159,4 +159,3 @@ Write-Host ('Source SHA256={0}' -f $sourceHex)
     ManifestPath  = $ManifestPath
     PartFiles     = $parts
 }
-
