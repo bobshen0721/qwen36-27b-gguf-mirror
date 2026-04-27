@@ -1,4 +1,4 @@
-# Qwen3.6 27B GGUF GitHub Mirror
+# GGUF GitHub Mirror
 
 這個 repo 用來鏡像多個 Qwen3.6 27B GGUF 檔案，做法是：
 
@@ -13,12 +13,14 @@
 | --- | --- | --- |
 | `Qwen3.6-27B-UD-IQ2_XXS.gguf` | `v1-qwen3.6-27b-ud-iq2-xxs` | `merge-model.bat` |
 | `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf` | `v1-qwen3.6-27b-uncensored-hauhaucs-aggressive-iq3-m` | `merge-aggressive-iq3m.bat` |
+| `gemma-4-31B-it-Q3_K_M.gguf` | `v1-gemma-4-31b-it-q3-k-m` | `merge-gemma-q3km.bat` |
 
 ## 檔案清單
 
 - `split-model.ps1`：把原始 `.gguf` 直接切成多個 `1900 MiB` 分片
 - `merge-model.bat`：在 Windows 合併下載好的分片；可接受模型檔名參數
 - `merge-aggressive-iq3m.bat`：合併 `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf`
+- `merge-gemma-q3km.bat`：合併 `gemma-4-31B-it-Q3_K_M.gguf`
 - `verify-model.ps1`：比對單一檔案的 SHA256 是否符合 `checksums.sha256`
 - `checksums.sha256`：原始模型與每個分片的 SHA256 manifest
 - `UPSTREAM.md`：上游來源與授權說明
@@ -44,10 +46,22 @@ merge-model.bat
 merge-aggressive-iq3m.bat
 ```
 
+如果要合併 Gemma Q3_K_M 版本，可執行：
+
+```bat
+merge-gemma-q3km.bat
+```
+
 或直接傳入模型檔名：
 
 ```bat
 merge-model.bat Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf
+```
+
+Gemma 也可以直接傳入模型檔名：
+
+```bat
+merge-model.bat gemma-4-31B-it-Q3_K_M.gguf
 ```
 
 `merge-model.bat` 會：
@@ -82,6 +96,12 @@ Aggressive IQ3_M:
 hf download HauhauCS/Qwen3.6-27B-Uncensored-HauhauCS-Aggressive Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf --local-dir .\staging
 ```
 
+Gemma Q3_K_M:
+
+```powershell
+hf download unsloth/gemma-4-31B-it-GGUF gemma-4-31B-it-Q3_K_M.gguf --local-dir .\staging
+```
+
 ### 2. 切檔並產生 SHA256 manifest
 
 ```powershell
@@ -97,6 +117,16 @@ Aggressive IQ3_M:
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\split-model.ps1 `
   -InputFile .\staging\Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf `
+  -OutputDir .\release-assets `
+  -PartSizeMiB 1900 `
+  -UpdateManifest
+```
+
+Gemma Q3_K_M:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\split-model.ps1 `
+  -InputFile .\staging\gemma-4-31B-it-Q3_K_M.gguf `
   -OutputDir .\release-assets `
   -PartSizeMiB 1900 `
   -UpdateManifest

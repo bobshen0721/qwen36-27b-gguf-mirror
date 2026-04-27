@@ -6,6 +6,9 @@
 - Upstream repository: `HauhauCS/Qwen3.6-27B-Uncensored-HauhauCS-Aggressive`
 - Upstream file: `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf`
 - Source URL: <https://huggingface.co/HauhauCS/Qwen3.6-27B-Uncensored-HauhauCS-Aggressive>
+- Upstream repository: `unsloth/gemma-4-31B-it-GGUF`
+- Upstream file: `gemma-4-31B-it-Q3_K_M.gguf`
+- Source URL: <https://huggingface.co/unsloth/gemma-4-31B-it-GGUF>
 - Mirror purpose: provide a GitHub-hosted split-file download path for environments that cannot access Hugging Face directly
 
 # License Note
