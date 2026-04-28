@@ -9,6 +9,9 @@
 - Upstream repository: `unsloth/gemma-4-31B-it-GGUF`
 - Upstream file: `gemma-4-31B-it-Q3_K_M.gguf`
 - Source URL: <https://huggingface.co/unsloth/gemma-4-31B-it-GGUF>
+- Upstream repository: `ollama.com/library/qwen3.6:27b`
+- Upstream file: model blob `sha256-83c54730a5fea8a0958598c01617c1419c431e93b33bacf980b49a420c798926`
+- Source URL: <https://ollama.com/library/qwen3.6:27b/blobs/83c54730a5fe>
 - Mirror purpose: provide a GitHub-hosted split-file download path for environments that cannot access Hugging Face directly
 
 # License Note

@@ -14,6 +14,7 @@
 | `Qwen3.6-27B-UD-IQ2_XXS.gguf` | `v1-qwen3.6-27b-ud-iq2-xxs` | `merge-model.bat` |
 | `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf` | `v1-qwen3.6-27b-uncensored-hauhaucs-aggressive-iq3-m` | `merge-aggressive-iq3m.bat` |
 | `gemma-4-31B-it-Q3_K_M.gguf` | `v1-gemma-4-31b-it-q3-k-m` | `merge-gemma-q3km.bat` |
+| `qwen3.6-27b-q4-k-m.gguf` | `v1-ollama-qwen3.6-27b-q4-k-m` | `merge-qwen36-27b-ollama-q4km.bat` |
 
 ## 檔案清單
 
@@ -21,6 +22,8 @@
 - `merge-model.bat`：在 Windows 合併下載好的分片；可接受模型檔名參數
 - `merge-aggressive-iq3m.bat`：合併 `Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf`
 - `merge-gemma-q3km.bat`：合併 `gemma-4-31B-it-Q3_K_M.gguf`
+- `merge-qwen36-27b-ollama-q4km.bat`：合併 Ollama `qwen3.6:27b` 的 Q4_K_M GGUF blob
+- `Modelfile-qwen36-27b-ollama-q4km`：公司電腦離線匯入 Ollama 用的 Modelfile
 - `verify-model.ps1`：比對單一檔案的 SHA256 是否符合 `checksums.sha256`
 - `checksums.sha256`：原始模型與每個分片的 SHA256 manifest
 - `UPSTREAM.md`：上游來源與授權說明
@@ -155,3 +158,27 @@ gh release create $tag $assets --repo bobshen0721/qwen36-27b-gguf-mirror --title
 - 分片只做切割，不做壓縮
 - `checksums.sha256` 以最終 release 內容為準
 - 如果系統禁止直接執行 `.ps1`，請用 `powershell -ExecutionPolicy Bypass -File ...` 的形式呼叫
+
+## Ollama qwen3.6:27b offline import
+
+Download all assets from release `v1-ollama-qwen3.6-27b-q4-k-m`, then put these files in one folder:
+
+- `qwen3.6-27b-q4-k-m.gguf.001` through the final part
+- `checksums.sha256`
+- `merge-qwen36-27b-ollama-q4km.bat`
+- `Modelfile-qwen36-27b-ollama-q4km`
+- `verify-model.ps1`
+
+Merge and import:
+
+```bat
+merge-qwen36-27b-ollama-q4km.bat
+ollama create qwen3.6-github:27b -f Modelfile-qwen36-27b-ollama-q4km
+ollama run qwen3.6-github:27b
+```
+
+Optional verification:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\verify-model.ps1 -File .\qwen3.6-27b-q4-k-m.gguf -ManifestPath .\checksums.sha256
+```
